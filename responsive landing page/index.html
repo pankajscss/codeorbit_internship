@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BEAR | Responsive Landing Page</title>
+
+  <style>
+    /* 1. Global styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #101828;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* 2. Navigation bar */
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #a78bfa;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #d1d5db;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #a78bfa;
+    }
+
+    /* 3. Hero section */
+    .hero {
+      max-width: 1200px;
+      min-height: 75vh;
+      margin: auto;
+      padding: 60px 24px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-content {
+      max-width: 580px;
+    }
+
+    .tagline {
+      display: inline-block;
+      padding: 7px 14px;
+      margin-bottom: 22px;
+      border: 1px solid #51458a;
+      border-radius: 30px;
+      color: #c4b5fd;
+      background: #211d3b;
+      font-size: 13px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1.12;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: #a78bfa;
+    }
+
+    .hero p {
+      max-width: 500px;
+      color: #cbd5e1;
+      font-size: 17px;
+      margin-bottom: 32px;
+    }
+
+    /* 4. Call-to-action buttons */
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #8b5cf6;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #7c3aed;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px #8b5cf640;
+    }
+
+    .btn-secondary {
+      border: 1px solid #475569;
+      color: #ffffff;
+    }
+
+    .btn-secondary:hover {
+      background: #263248;
+      transform: translateY(-3px);
+    }
+
+    /* 5. Hero image */
+    .hero-image {
+      min-height: 360px;
+      border-radius: 24px;
+      background:
+        radial-gradient(
+          circle at 30% 30%,
+          #c4b5fd,
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 70% 60%,
+          #7c3aed,
+          transparent 35%
+        ),
+        linear-gradient(135deg, #292044, #151c35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 25px 70px #00000035;
+    }
+
+    .hero-image .orb {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: linear-gradient(
+        135deg,
+        #ede9fe,
+        #a78bfa 45%,
+        #6d28d9
+      );
+      box-shadow:
+        inset -18px -18px 35px #3b167d80,
+        0 0 80px #a78bfa70;
+      transition: transform 0.5s ease;
+    }
+
+    .hero-image:hover .orb {
+      transform: scale(1.1) rotate(12deg);
+    }
+
+    /* 6. Feature cards */
+    .features {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 24px 70px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      padding: 24px;
+      background: #192438;
+      border: 1px solid #29354b;
+      border-radius: 14px;
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: #8b5cf6;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 25px;
+      text-align: center;
+      color: #94a3b8;
+      border-top: 1px solid #29354b;
+    }
+
+    /* 7. Tablet: screens up to 900px */
+    @media (max-width: 900px) {
+      .hero {
+        gap: 30px;
+        padding-top: 45px;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .hero-image {
+        min-height: 300px;
+      }
+
+      .hero-image .orb {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    /* 8. Mobile: screens up to 600px */
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 18px 20px;
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 14px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 35px 20px 45px;
+        min-height: auto;
+      }
+
+      .hero h1 {
+        font-size: clamp(36px, 10vw, 48px);
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-image {
+        min-height: 260px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+        padding: 0 20px 45px;
+      }
+    }
+
+    /* 9. Small mobile screens */
+    @media (max-width: 360px) {
+      .navbar {
+        padding: 16px 14px;
+      }
+
+      .nav-links {
+        gap: 8px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .features {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+    }
+
+    /* Respect reduced-motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="#" class="logo">BEAR</a>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero banner -->
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="tagline">✦ YOUR NEXT BIG IDEA</span>
+
+        <h1>
+          Build something
+          <span>extraordinary.</span>
+        </h1>
+
+        <p>
+          Turn your vision into reality with a smarter,
+          simpler digital experience designed to help
+          you achieve more.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#features" class="btn btn-primary">
+            Get Started →
+          </a>
+
+          <a href="#about" class="btn btn-secondary">
+            Learn More
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-image" role="img"
+           aria-label="Abstract purple glowing sphere">
+        <div class="orb"></div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+      <article class="feature-card">
+        <h3>⚡ Fast Performance</h3>
+        <p>
+          A lightweight design that loads quickly
+          and works smoothly across devices.
+        </p>
+      </article>
+
+      <article class="feature-card" id="about">
+        <h3>📱 Fully Responsive</h3>
+        <p>
+          Flexible layouts that adapt to desktop,
+          tablet, and mobile screens.
+        </p>
+      </article>
+
+      <article class="feature-card" id="contact">
+        <h3>✨ Modern Design</h3>
+        <p>
+          Clean typography, elegant colors,
+          and interactive hover effects.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 BEAR. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
